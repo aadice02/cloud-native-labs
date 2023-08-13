@@ -4,11 +4,11 @@ special = true
 override_special = "_@%"
 }
 
-resource "azurerm_availability_set" "web_availabilty_set" {
-  name                = "web_availabilty_set"
-  location            = var.location
-  resource_group_name = var.resource_group
-}
+#resource "azurerm_availability_set" "web_availabilty_set" {
+#  name                = "web_availabilty_set"
+#  location            = var.location
+#  resource_group_name = var.resource_group
+#}
 
 resource "azurerm_network_interface" "web-net-interface" {
     name = "web-network"
@@ -27,7 +27,7 @@ resource "azurerm_virtual_machine" "web-vm" {
   location = var.location
   resource_group_name = var.resource_group
   network_interface_ids = [ azurerm_network_interface.web-net-interface.id ]
-  availability_set_id = azurerm_availability_set.web_availabilty_set.id
+#  availability_set_id = azurerm_availability_set.web_availabilty_set.id
   vm_size = "Standard_B2s"
   delete_os_disk_on_termination = true
   
