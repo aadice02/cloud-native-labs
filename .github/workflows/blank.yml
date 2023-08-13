@@ -1,0 +1,31 @@
+name: Terraform Deployment
+
+on:
+  push:
+    branches: [ "intuitive-lab" ]
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    
+	defaults:
+      run:
+        shell: bash
+	steps:
+	- name: Checkout repository
+	  uses: actions/checkout@v2
+
+	- name: Setup Terraform
+	  uses: hashicorp/setup-terraform@v1
+	  with:
+		terraform_version: 0.15.0
+
+	- name: Terraform init
+	  run: terraform init
+
+	- name: Terraform validate
+	  run: terraform validate
+
+	- name: Terraform plan
+	  run: terraform plan -out=tfplan
